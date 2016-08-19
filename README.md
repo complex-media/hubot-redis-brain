@@ -34,6 +34,22 @@ For example, `export REDIS_URL=redis://passwd@192.168.0.1:16379/prefix` would
 authenticate with `password`, connecting to 192.168.0.1 on port 16379, and store
 data using the `prefix:storage` key.
 
+## Events
+
+Once redis is connected it will emit an event `"redis-brain-connected"` that all
+the other scripts will be able to access. When this event is triggered, it means
+that redis has been successfully connected and the data is available for all other scripts.
+
+To listen on this event:
+
+```
+    robot.on "redis-brain-connected", () ->
+```
+
+and write any other functionality that would be necessary once the redis brain
+has been connected.
+
+
 ### Installing your own
 
 If you need to install and
